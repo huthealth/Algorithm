@@ -1,0 +1,76 @@
+package BaekJun.위상정렬;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+
+public class 부등호2529 {
+    public static void main(String... args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int k = Integer.parseInt(br.readLine());
+        int[] minDegree = new int[k+1];
+        int[] maxDegree = new int[k+1];
+        char[] max = new char[k+1];
+        char[] min = new char[k+1];
+        List<List<Integer>> minAdj = new ArrayList<>(k+1);
+        List<List<Integer>> maxAdj = new ArrayList<>(k+1);
+        for(int i = 0 ; i<=k; i++) {
+            minAdj.add(new ArrayList<>());
+            maxAdj.add(new ArrayList<>());
+        }
+        String[] inputs = br.readLine().split(" ");
+        for(int i = 0 ; i < k ; i++) {
+            if("<".equals(inputs[i])) {
+                minAdj.get(i).add(i+1);
+                maxAdj.get(i+1).add(i);
+                minDegree[i+1]++;
+                maxDegree[i]++;
+            }
+            else {
+                minAdj.get(i+1).add(i);
+                maxAdj.get(i).add(i+1);
+                minDegree[i]++;
+                maxDegree[i+1]++;
+            }
+        }
+
+        int maxNum = 9;
+        int minNum = 0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        //maxBfs
+        for(int i = 0 ; i<= k; i++) {
+            if(maxDegree[i] == 0) pq.offer(i);
+        }
+        while(!pq.isEmpty()) {
+            int now = pq.poll();
+            for(Integer next : maxAdj.get(now)) {
+                maxDegree[next]--;
+                if(maxDegree[next] == 0) {
+                    pq.offer(next);
+                }
+            }
+            max[now] = (char)('0' + maxNum);
+            maxNum--;
+        }
+
+        for(int i = 0 ; i <= k; i++) {
+            if(minDegree[i] == 0) pq.add(i);
+        }
+        while(!pq.isEmpty()) {
+            int now = pq.poll();
+            for(Integer next : minAdj.get(now)) {
+                minDegree[next]--;
+                if(minDegree[next] == 0) {
+                    pq.offer(next);
+                }
+            }
+            min[now] = (char)(minNum + '0');
+            minNum++;
+        }
+        System.out.println(max);
+        System.out.println(min);
+    }
+}
