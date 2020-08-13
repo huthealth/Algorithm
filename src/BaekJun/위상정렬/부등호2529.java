@@ -1,5 +1,5 @@
 package BaekJun.위상정렬;
-
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -74,3 +74,92 @@ public class 부등호2529 {
         System.out.println(min);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+public class 부등호2529 {
+    static List<String> answers = new ArrayList<>();
+    static int[] visited = new int[10];
+    static String[] operation;
+    static int len;
+
+    public static void main(String... args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        len = Integer.parseInt(br.readLine());
+        operation = br.readLine().split(" ");
+
+        for(int i = 0 ; i < 10 ; i++) {
+            visited[i] = 1;
+            String ans = Integer.toString(i);
+            findNum(0,i,ans);
+            visited[i] = 0;
+        }
+        answers.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        System.out.println(answers.get(0));
+        System.out.println(answers.get(answers.size()-1));
+    }
+
+    private static void findNum(int now, int num, String ans) {
+        if(now == len) {
+            answers.add(ans);
+            return;
+        }
+
+        for(int i =0; i < 10; i++){
+            if(visited[i] ==0) {
+                if (operation[now].equals("<") && num < i || operation[now].equals(">") && num > i) {
+                    visited[i] = 1;
+                    ans += Integer.toString(i);
+                    findNum(now + 1, i, ans);
+                    ans = ans.substring(0,ans.length()-1);
+                    visited[i] = 0;
+                }
+            }
+        }
+
+    }
+}
+
+
+
+
+
