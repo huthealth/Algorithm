@@ -1,4 +1,4 @@
-package BaekJun;
+package BaekJun.다이나믹;
 
 import java.io.BufferedReader;
 import java.io.IOException;
