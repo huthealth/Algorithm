@@ -46,12 +46,10 @@ public class 우수마을1949 {
         for(int i = 0 ; i<2; i++) Arrays.fill(cache[i],-1);
         visited[1] = 1;
         long ans1 = getMaxPeople(1,1);
-        System.out.println();
         Arrays.fill(visited,0);
         visited[1]= 1;
        // for(int i = 0 ; i<2; i++) Arrays.fill(cache[i],-1);
         long ans2 = getMaxPeople(1,0);
-        System.out.println();
 
         System.out.println(Math.max(ans1,ans2));
 
@@ -69,6 +67,7 @@ public class 우수마을1949 {
             temp +=getMaxPeople(list.get(now).get(i),0);
             if(check == 0) {
                 temp = Math.max(temp, getMaxPeople(list.get(now).get(i), 1));
+               // temp =  getMaxPeople(list.get(now).get(i), 1);
             }
             visited[list.get(now).get(i)] = 0;
             cache[check][now]  += temp;
