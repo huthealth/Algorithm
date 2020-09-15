@@ -54,3 +54,68 @@ public class 문자열판별16500 {
         return cache[index];
     }
 }
+
+/*
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+
+public class test {
+    static String S;
+    static String[] words;
+    static int[][] cache;
+    static int answer = 0;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        S = br.readLine();
+        int N = Integer.parseInt( br.readLine() );
+        Set<String> set = new HashSet<>();
+        /*
+        for(int i = 0 ; i< N ; i++) {
+            set.add(br.readLine());
+        }
+        words = new String[set.size()];
+        int cnt = 0;
+        for(String str : set) {
+            words[cnt] = str;
+            cnt++;
+        }
+
+
+        words = new String[N];
+                for(int i = 0 ; i < N ; i++) {
+        words[i] = br.readLine();
+        }
+        cache = new int[S.length()][words.length];
+        for(int i = 0 ; i < words.length; i++) {
+        dp(0,i);
+        }
+        System.out.println(answer);
+        }
+
+private static void dp(int start  , int index) {
+        if(answer == 1 ) return;
+        if(start == S.length()) {
+        answer = 1;
+        return;
+        }
+
+        //if(cache[start][index] != 0) return;
+        //cache[start][index] = 1;
+
+        if(words[index].length() > S.length() - start ) return;
+        for(int i = start; i < start + words[index].length(); i++) {
+        if( S.charAt(i) != words[index].charAt(i-start)) return;
+        }
+
+        for(int i =0  ; i< words.length; i++) {
+        if(answer == 1) return;
+        dp(start + words[index].length(), i);
+        }
+        }
+
+        }
+ */
