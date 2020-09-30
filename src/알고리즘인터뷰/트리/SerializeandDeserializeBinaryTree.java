@@ -168,5 +168,10 @@ public class SerializeandDeserializeBinaryTree {
         System.out.println(s1==s3);
         System.out.println(s1.equals(s3));
 
+        Set<Integer> set = new HashSet<>();
+        List<Integer> ans = new ArrayList<>();
+         ans.add(10);
+        System.out.println(ans.get(0));
+
     }
 }
